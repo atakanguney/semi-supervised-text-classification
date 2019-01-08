@@ -45,13 +45,13 @@ class Decoder(nn.Module):
 
         linear_layers = [nn.Linear(neurons[i - 1], neurons[i]) for i in range(1, len(neurons))]
 
-        self.activation = nn.Softmax(z_dim)
+        self.activation = nn.Softmax()
         self.drop = nn.Dropout(0.2)
 
         self.hidden = nn.ModuleList(linear_layers)
 
         self.norm = nn.BatchNorm1d(x_dim)
-        self.output_activation = nn.Softmax(x_dim)
+        self.output_activation = nn.Softmax()
 
     def forward(self, x):
         x = self.activation(x)
